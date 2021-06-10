@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:issueTracker.xcodeproj">
+      location = "group:/Users/kimjisun/Desktop/iOS/issue-tracker/iOS/issueTracker/IssueTracker.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

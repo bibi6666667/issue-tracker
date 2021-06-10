@@ -14,8 +14,8 @@
 		764CD007266F1BBF002F6335 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764CD005266F1BBF002F6335 /* Main.storyboard */; };
 		764CD009266F1BC0002F6335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764CD008266F1BC0002F6335 /* Assets.xcassets */; };
 		764CD00C266F1BC0002F6335 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764CD00A266F1BC0002F6335 /* LaunchScreen.storyboard */; };
-		764CD017266F1BC0002F6335 /* issueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764CD016266F1BC0002F6335 /* issueTrackerTests.swift */; };
-		764CD022266F1BC0002F6335 /* issueTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764CD021266F1BC0002F6335 /* issueTrackerUITests.swift */; };
+		764CD017266F1BC0002F6335 /* IssueTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764CD016266F1BC0002F6335 /* IssueTrackerTests.swift */; };
+		764CD022266F1BC0002F6335 /* IssueTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764CD021266F1BC0002F6335 /* IssueTrackerUITests.swift */; };
 		764CD034266F21C0002F6335 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764CD033266F21C0002F6335 /* LoginViewController.swift */; };
 		769BD19B2670B05A00F6403E /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769BD19A2670B05A00F6403E /* Issue.swift */; };
 		8201360677957A621C11E2A4 /* Pods_issueTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 776BA9EEE2E9065DF5BB2BE2 /* Pods_issueTrackerTests.framework */; };
@@ -45,18 +45,18 @@
 		4167E1EBFE848F4CD48BD501 /* Pods-issueTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-issueTracker.debug.xcconfig"; path = "Target Support Files/Pods-issueTracker/Pods-issueTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		4478CA8D53CB2BD2D5E7B420 /* Pods-issueTracker-issueTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-issueTracker-issueTrackerUITests.debug.xcconfig"; path = "Target Support Files/Pods-issueTracker-issueTrackerUITests/Pods-issueTracker-issueTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6B8A373F00E42E56137B1AA9 /* Pods-issueTracker-issueTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-issueTracker-issueTrackerUITests.release.xcconfig"; path = "Target Support Files/Pods-issueTracker-issueTrackerUITests/Pods-issueTracker-issueTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		764CCFFC266F1BBF002F6335 /* issueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = issueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		764CCFFC266F1BBF002F6335 /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764CCFFF266F1BBF002F6335 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		764CD001266F1BBF002F6335 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		764CD006266F1BBF002F6335 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		764CD008266F1BC0002F6335 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		764CD00B266F1BC0002F6335 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		764CD00D266F1BC0002F6335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		764CD012266F1BC0002F6335 /* issueTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = issueTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		764CD016266F1BC0002F6335 /* issueTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = issueTrackerTests.swift; sourceTree = "<group>"; };
+		764CD012266F1BC0002F6335 /* IssueTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IssueTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		764CD016266F1BC0002F6335 /* IssueTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerTests.swift; sourceTree = "<group>"; };
 		764CD018266F1BC0002F6335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		764CD01D266F1BC0002F6335 /* issueTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = issueTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		764CD021266F1BC0002F6335 /* issueTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = issueTrackerUITests.swift; sourceTree = "<group>"; };
+		764CD01D266F1BC0002F6335 /* IssueTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IssueTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		764CD021266F1BC0002F6335 /* IssueTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerUITests.swift; sourceTree = "<group>"; };
 		764CD023266F1BC0002F6335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		764CD033266F21C0002F6335 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		769BD19A2670B05A00F6403E /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
@@ -109,9 +109,9 @@
 		764CCFF3266F1BBF002F6335 = {
 			isa = PBXGroup;
 			children = (
-				764CCFFE266F1BBF002F6335 /* issueTracker */,
-				764CD015266F1BC0002F6335 /* issueTrackerTests */,
-				764CD020266F1BC0002F6335 /* issueTrackerUITests */,
+				764CCFFE266F1BBF002F6335 /* IssueTracker */,
+				764CD015266F1BC0002F6335 /* IssueTrackerTests */,
+				764CD020266F1BC0002F6335 /* IssueTrackerUITests */,
 				764CCFFD266F1BBF002F6335 /* Products */,
 				1461DB6777D340A683D30EBE /* Pods */,
 				C7397859995AA0A9D6DDC960 /* Frameworks */,
@@ -121,14 +121,14 @@
 		764CCFFD266F1BBF002F6335 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				764CCFFC266F1BBF002F6335 /* issueTracker.app */,
-				764CD012266F1BC0002F6335 /* issueTrackerTests.xctest */,
-				764CD01D266F1BC0002F6335 /* issueTrackerUITests.xctest */,
+				764CCFFC266F1BBF002F6335 /* IssueTracker.app */,
+				764CD012266F1BC0002F6335 /* IssueTrackerTests.xctest */,
+				764CD01D266F1BC0002F6335 /* IssueTrackerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		764CCFFE266F1BBF002F6335 /* issueTracker */ = {
+		764CCFFE266F1BBF002F6335 /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
 				764CD031266F1DD2002F6335 /* Domain */,
@@ -141,25 +141,25 @@
 				764CD00A266F1BC0002F6335 /* LaunchScreen.storyboard */,
 				764CD00D266F1BC0002F6335 /* Info.plist */,
 			);
-			path = issueTracker;
+			path = IssueTracker;
 			sourceTree = "<group>";
 		};
-		764CD015266F1BC0002F6335 /* issueTrackerTests */ = {
+		764CD015266F1BC0002F6335 /* IssueTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				764CD016266F1BC0002F6335 /* issueTrackerTests.swift */,
+				764CD016266F1BC0002F6335 /* IssueTrackerTests.swift */,
 				764CD018266F1BC0002F6335 /* Info.plist */,
 			);
-			path = issueTrackerTests;
+			path = IssueTrackerTests;
 			sourceTree = "<group>";
 		};
-		764CD020266F1BC0002F6335 /* issueTrackerUITests */ = {
+		764CD020266F1BC0002F6335 /* IssueTrackerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				764CD021266F1BC0002F6335 /* issueTrackerUITests.swift */,
+				764CD021266F1BC0002F6335 /* IssueTrackerUITests.swift */,
 				764CD023266F1BC0002F6335 /* Info.plist */,
 			);
-			path = issueTrackerUITests;
+			path = IssueTrackerUITests;
 			sourceTree = "<group>";
 		};
 		764CD02F266F1DC0002F6335 /* Data */ = {
@@ -206,9 +206,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		764CCFFB266F1BBF002F6335 /* issueTracker */ = {
+		764CCFFB266F1BBF002F6335 /* IssueTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 764CD026266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "issueTracker" */;
+			buildConfigurationList = 764CD026266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "IssueTracker" */;
 			buildPhases = (
 				3E3E4828487526B38674D2FB /* [CP] Check Pods Manifest.lock */,
 				764CCFF8266F1BBF002F6335 /* Sources */,
@@ -220,14 +220,14 @@
 			);
 			dependencies = (
 			);
-			name = issueTracker;
+			name = IssueTracker;
 			productName = issueTracker;
-			productReference = 764CCFFC266F1BBF002F6335 /* issueTracker.app */;
+			productReference = 764CCFFC266F1BBF002F6335 /* IssueTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		764CD011266F1BC0002F6335 /* issueTrackerTests */ = {
+		764CD011266F1BC0002F6335 /* IssueTrackerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 764CD029266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "issueTrackerTests" */;
+			buildConfigurationList = 764CD029266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "IssueTrackerTests" */;
 			buildPhases = (
 				0B1DE2994B1D56E90BA562F3 /* [CP] Check Pods Manifest.lock */,
 				764CD00E266F1BC0002F6335 /* Sources */,
@@ -239,14 +239,14 @@
 			dependencies = (
 				764CD014266F1BC0002F6335 /* PBXTargetDependency */,
 			);
-			name = issueTrackerTests;
+			name = IssueTrackerTests;
 			productName = issueTrackerTests;
-			productReference = 764CD012266F1BC0002F6335 /* issueTrackerTests.xctest */;
+			productReference = 764CD012266F1BC0002F6335 /* IssueTrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		764CD01C266F1BC0002F6335 /* issueTrackerUITests */ = {
+		764CD01C266F1BC0002F6335 /* IssueTrackerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 764CD02C266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "issueTrackerUITests" */;
+			buildConfigurationList = 764CD02C266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "IssueTrackerUITests" */;
 			buildPhases = (
 				497479CE16D27A41DD3918FA /* [CP] Check Pods Manifest.lock */,
 				764CD019266F1BC0002F6335 /* Sources */,
@@ -258,9 +258,9 @@
 			dependencies = (
 				764CD01F266F1BC0002F6335 /* PBXTargetDependency */,
 			);
-			name = issueTrackerUITests;
+			name = IssueTrackerUITests;
 			productName = issueTrackerUITests;
-			productReference = 764CD01D266F1BC0002F6335 /* issueTrackerUITests.xctest */;
+			productReference = 764CD01D266F1BC0002F6335 /* IssueTrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -285,7 +285,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 764CCFF7266F1BBF002F6335 /* Build configuration list for PBXProject "issueTracker" */;
+			buildConfigurationList = 764CCFF7266F1BBF002F6335 /* Build configuration list for PBXProject "IssueTracker" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -298,9 +298,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				764CCFFB266F1BBF002F6335 /* issueTracker */,
-				764CD011266F1BC0002F6335 /* issueTrackerTests */,
-				764CD01C266F1BC0002F6335 /* issueTrackerUITests */,
+				764CCFFB266F1BBF002F6335 /* IssueTracker */,
+				764CD011266F1BC0002F6335 /* IssueTrackerTests */,
+				764CD01C266F1BC0002F6335 /* IssueTrackerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -435,7 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				764CD017266F1BC0002F6335 /* issueTrackerTests.swift in Sources */,
+				764CD017266F1BC0002F6335 /* IssueTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				764CD022266F1BC0002F6335 /* issueTrackerUITests.swift in Sources */,
+				764CD022266F1BC0002F6335 /* IssueTrackerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,12 +452,12 @@
 /* Begin PBXTargetDependency section */
 		764CD014266F1BC0002F6335 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 764CCFFB266F1BBF002F6335 /* issueTracker */;
+			target = 764CCFFB266F1BBF002F6335 /* IssueTracker */;
 			targetProxy = 764CD013266F1BC0002F6335 /* PBXContainerItemProxy */;
 		};
 		764CD01F266F1BC0002F6335 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 764CCFFB266F1BBF002F6335 /* issueTracker */;
+			target = 764CCFFB266F1BBF002F6335 /* IssueTracker */;
 			targetProxy = 764CD01E266F1BC0002F6335 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -657,7 +657,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/issueTracker.app/issueTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IssueTracker.app/IssueTracker";
 			};
 			name = Debug;
 		};
@@ -680,7 +680,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/issueTracker.app/issueTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IssueTracker.app/IssueTracker";
 			};
 			name = Release;
 		};
@@ -729,7 +729,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		764CCFF7266F1BBF002F6335 /* Build configuration list for PBXProject "issueTracker" */ = {
+		764CCFF7266F1BBF002F6335 /* Build configuration list for PBXProject "IssueTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764CD024266F1BC0002F6335 /* Debug */,
@@ -738,7 +738,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		764CD026266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "issueTracker" */ = {
+		764CD026266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "IssueTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764CD027266F1BC0002F6335 /* Debug */,
@@ -747,7 +747,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		764CD029266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "issueTrackerTests" */ = {
+		764CD029266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "IssueTrackerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764CD02A266F1BC0002F6335 /* Debug */,
@@ -756,7 +756,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		764CD02C266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "issueTrackerUITests" */ = {
+		764CD02C266F1BC0002F6335 /* Build configuration list for PBXNativeTarget "IssueTrackerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764CD02D266F1BC0002F6335 /* Debug */,
