@@ -4,19 +4,19 @@ import java.time.LocalDate;
 
 public class CommentRequest {
 
-    private String userId;
+    private Long userId;
     private Long issueId;
     private String content;
     private LocalDate createdAt;
 
-    public CommentRequest(String userId, Long issueId, String content, LocalDate createdAt) {
+    public CommentRequest(Long userId, Long issueId, String content, LocalDate createdAt) {
         this.userId = userId;
         this.issueId = issueId;
         this.content = content;
         this.createdAt = createdAt;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
