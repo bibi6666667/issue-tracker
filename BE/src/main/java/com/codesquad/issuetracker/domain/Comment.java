@@ -1,20 +1,25 @@
 package com.codesquad.issuetracker.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
+    private Long id;
     private String content;
-    private final LocalDateTime createdAt;
-    private final Long issueId;
-    private final Long userId;
+    private LocalDateTime createdAt;
+    private Long issueId;
+    private Long userId;
+
+    public Comment() {
+    }
 
     private Comment(Long id, String content, LocalDateTime createdAt, Long issueId, Long userId) {
         this.id = id;
