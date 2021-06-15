@@ -1,5 +1,7 @@
 package com.codesquad.issuetracker.response;
 
+import com.codesquad.issuetracker.domain.Label;
+
 public class LabelResponse {
 
     private String title;
@@ -22,5 +24,9 @@ public class LabelResponse {
 
     public String getColor() {
         return color;
+    }
+
+    public static LabelResponse labelToLabelResponse(Label label) {
+        return new LabelResponse(label.getTitle(), label.getContent(), label.getColor());
     }
 }
