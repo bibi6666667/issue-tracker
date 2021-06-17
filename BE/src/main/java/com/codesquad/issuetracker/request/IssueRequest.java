@@ -1,24 +1,48 @@
 package com.codesquad.issuetracker.request;
 
-import java.time.LocalDate;
+import com.codesquad.issuetracker.domain.Assignee;
+import com.codesquad.issuetracker.domain.Label;
+import com.codesquad.issuetracker.domain.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class IssueRequest {
 
     private String title;
     private String content;
-    private LocalDate createdAt;
-    private ArrayList<String> label;
-    private Long milestoneId;
-    private String userId;
+    private boolean status;
 
-    public IssueRequest(String title, String content, LocalDate createdAt, ArrayList<String> label, Long milestoneId, String userId) {
+    @JsonProperty("created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
+    private LocalDateTime createdAt;
+
+    @JsonProperty("user_id")
+    private User user;
+
+    @JsonProperty("milestone_id")
+    private Long milestoneId;
+
+    private ArrayList<Label> labelList;
+
+    private ArrayList<Assignee> assigneeList;
+
+    public IssueRequest() {
+
+    }
+
+    public IssueRequest(String title, String content, boolean status, LocalDateTime createdAt,
+                        User user, Long milestoneId, ArrayList<Label> labelList, ArrayList<Assignee> assigneeList) {
         this.title = title;
         this.content = content;
+        this.status = status;
         this.createdAt = createdAt;
-        this.label = label;
+        this.user = user;
         this.milestoneId = milestoneId;
-        this.userId = userId;
+        this.labelList = labelList;
+        this.assigneeList = assigneeList;
     }
 
     public String getTitle() {
@@ -29,19 +53,41 @@ public class IssueRequest {
         return content;
     }
 
-    public LocalDate getCreatedAt() {
+    public boolean isStatus() {
+        return status;
+    }
+
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public ArrayList<String> getLabel() {
-        return label;
+    public ArrayList<Label> getLabelList() {
+        return labelList;
     }
 
     public Long getMilestoneId() {
         return milestoneId;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
+    }
+
+    public ArrayList<Assignee> getAssigneeList() {
+        return assigneeList;
+    }
+
+    @Override
+    public String toString() {
+        return "IssueRequest{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", status=" + status +
+                ", createdAt=" + createdAt +
+                ", user=" + user +
+                ", milestoneId=" + milestoneId +
+                ", labelList=" + labelList +
+                ", assigneeList=" + assigneeList +
+                '}';
     }
 }

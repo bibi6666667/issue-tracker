@@ -5,15 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Getter
+
 @Entity
+@Table(name = "label")
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Label {
 
     @Id
@@ -22,6 +22,16 @@ public class Label {
     private String title;
     private String content;
     private String color;
+
+    @OneToMany(mappedBy="label")
+    private List<IssueLabel> issueLabels = new ArrayList<>();
+
+    public Label(Long id, String title, String content, String color) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.color = color;
+    }
 
     public static Label create(Long id, String title, String content, String color) {
         return new Label(id, title, content, color);

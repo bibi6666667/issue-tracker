@@ -6,6 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+
 public class LabelResponse {
 
     private String title;
@@ -20,4 +21,7 @@ public class LabelResponse {
         );
     }
 
+    public static LabelResponse labelToLabelResponse(Label label) {
+        return new LabelResponse(label.getTitle(), label.getContent(), label.getColor());
+    }
 }

@@ -1,26 +1,153 @@
 package com.codesquad.issuetracker.service;
 
-import com.codesquad.issuetracker.domain.Issue;
-import com.codesquad.issuetracker.repository.IssueRepository;
+import com.codesquad.issuetracker.domain.*;
+import com.codesquad.issuetracker.exception.NoSuchIssueException;
+import com.codesquad.issuetracker.repository.*;
+import com.codesquad.issuetracker.request.IssueRequest;
+import com.codesquad.issuetracker.response.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class IssueService {
 
     private final IssueRepository issueRepository;
+    private final LabelRepository labelRepository;
+    private final IssueLabelRepository issueLabelRepository;
+    private final MilestoneRepository milestoneRepository;
+    private final AssigneeRepository assigneeRepository;
 
-    public IssueService(IssueRepository issueRepository) {
+    @Autowired
+    public IssueService(IssueRepository issueRepository, LabelRepository labelRepository,
+                        IssueLabelRepository issueLabelRepository,
+                        MilestoneRepository milestoneRepository, AssigneeRepository assigneeRepository) {
         this.issueRepository = issueRepository;
+        this.labelRepository = labelRepository;
+        this.issueLabelRepository = issueLabelRepository;
+        this.milestoneRepository = milestoneRepository;
+        this.assigneeRepository = assigneeRepository;
     }
 
-    public List<Issue> getOpenedIssues() {
-        return issueRepository.getIssuesByStatusTrue();
+    public List<IssueResponse> getOpenedIssues() {
+        List<IssueResponse> result = new ArrayList<>();
+        List<Issue> issues = issueRepository.getIssuesByStatusTrue();
+        for(Issue issue : issues) {
+            result.add(issueToIssueResponse(issue));
+        }
+        return result;
     }
 
-    public List<Issue> getClosedIssues() {
-        return issueRepository.getIssuesByStatusFalse();
+    public List<IssueResponse> getClosedIssues() {
+        List<IssueResponse> result = new ArrayList<>();
+        List<Issue> issues = issueRepository.getIssuesByStatusFalse();
+        for(Issue issue : issues) {
+            result.add(issueToIssueResponse(issue));
+        }
+        return result;
     }
 
+    public IssueResponse getIssue(Long issueId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
+        return issueToIssueResponse(issue);
+    }
+
+    public IssueResponse addIssue(Issue issue) {
+        return issueToIssueResponse(issueRepository.save(issue));
+    } // IssueRequest의 User 수정 필요
+
+    public void updateTitle(Long issueId, IssueRequest issueRequest) {
+      //id로 Issue찾기 - Issue의 내용 변경 - save()로 저장(후 저장한 값 리턴)
+        Issue updateIssue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
+        updateIssue.setTitle(issueRequest.getTitle());
+        issueRepository.save(updateIssue);
+    }
+
+    public void updateAssignee(Long issueId, IssueRequest issueRequest) {
+        Issue updateIssue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
+        updateIssue.setAssignees(issueRequest.getAssigneeList());
+        issueRepository.save(updateIssue);
+    }
+
+    public void updateContent(Long issueId, IssueRequest issueRequest) {
+        Issue updateIssue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
+        updateIssue.setContent(issueRequest.getContent());
+        issueRepository.save(updateIssue);
+    }
+
+    public void updateStatus(Long issueId, IssueRequest issueRequest) {
+        Issue updateIssue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
+        updateIssue.setStatus(issueRequest.isStatus());
+        issueRepository.save(updateIssue);
+    }
+
+    public void updateLabelAdd(Long issueId, IssueRequest issueRequest) {
+        // IssueLabel을 Issue의 ID 기준으로 찾아 온 다음 더하거나(INSERT) 삭제(DELETE)한다
+        List<IssueLabel> labelsToEdited = issueLabelRepository.findIssueLabelsByIssueId(issueId); // 현재 IssueLabel 목록
+        ArrayList<Label> labelsToEdit = issueRequest.getLabelList(); // 수정할것
+        for (int i = 0; i < labelsToEdit.size(); i++) {
+            if (labelsToEdited.contains(labelsToEdit.get(i))) { // 현재 목록에 수정할 항목이 존재하면 넘어감 (추가/삭제 필요 x)
+                continue;
+            }
+            if (! labelsToEdited.contains(labelsToEdit.get(i))) { // 현재 목록에 수정할 항목이 없으면 추가함
+                IssueLabel issueLabel = IssueLabel.issueToIssueLabel(issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new), labelsToEdit.get(i));
+                labelsToEdited.add(issueLabel);
+            }
+            if (! labelsToEdit.contains(labelsToEdited.get(i))) {// 수정할 목록 중 현재목록 항목이 없으면 삭제함
+                issueRepository.deleteById(labelsToEdited.get(i).getId());
+            }
+        }
+    }
+
+    public void updateMilestone(Long issueId, IssueRequest issueRequest) {
+        Issue updateIssue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
+        updateIssue.setMilestoneId(issueRequest.getMilestoneId());
+        issueRepository.save(updateIssue);
+    }
+
+    public void deleteIssue(Long issueId) {
+        issueRepository.deleteById(issueId);
+    }
+
+    private Set<Label> getLabelsForIssue(Long issueId) {
+        return labelRepository.findByIssueId(issueId);
+    }
+
+    private IssueResponse issueToIssueResponse(Issue issue) {
+        return new IssueResponse(issue.getId(), issue.getTitle(), issue.getContent(), issue.isStatus(),
+                issue.getCreatedAt(), makeUserResponses(issue.getUser()),
+                makeMilestoneForIssueResponse(issue.getMilestoneId()), makeLabelResponses(issue.getId()),
+                makeAssigneeForIssueResponse(issue.getId()));
+    }
+
+    private Set<LabelResponse> makeLabelResponses(Long issueId) {
+        Set<Label> labels = getLabelsForIssue(issueId);
+        Set<LabelResponse> result = new HashSet<>();
+        for (Label label : labels) {
+            result.add(LabelResponse.labelToLabelResponse(label));
+        }
+        return result;
+    }
+
+    private UserResponse makeUserResponses(User user) {
+        return new UserResponse(user.getName(), user.getLoginId());
+    }
+
+    private MilestoneForIssueResponse makeMilestoneForIssueResponse(Long milestoneId) {
+        if (milestoneId == null) {
+            return new MilestoneForIssueResponse();
+        }
+        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow(NoSuchElementException::new);
+        return MilestoneForIssueResponse.milestoneToMilestoneForIssueResponse(milestone);
+    }
+
+    private Set<AssigneeForIssueResponse> makeAssigneeForIssueResponse(Long issueId) {
+        Set<Assignee> assignees = assigneeRepository.findAssigneesByIssueId(issueId);
+        Set<AssigneeForIssueResponse> result = new HashSet<>();
+        for (Assignee assignee : assignees) {
+            result.add(AssigneeForIssueResponse.assigneeToAssigneeForIssueResponse(assignee));
+        }
+        return result;
+    }
 }
