@@ -24,7 +24,7 @@ public class LabelController {
 
     @GetMapping
     public ApiResponse getLabels() {
-        return ApiResponse.ok(labelService.getLabels());
+        return ApiResponse.ok(labelService.getList());
     }
 
     @PutMapping("/{labelId}")

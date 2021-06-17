@@ -26,14 +26,14 @@ public class LabelService {
     }
 
 
-    public List<LabelResponse> getLabels() {
+    public List<LabelResponse> getList() {
         return labelRepository.findAll().stream()
                 .map(label -> LabelResponse.create(label))
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void edit(Long labelId, LabelRequest labelRequest){
+    public void edit(Long labelId, LabelRequest labelRequest) {
         Label label = labelRepository.getById(labelId);
         label.update(labelRequest);
         labelRepository.save(label);
