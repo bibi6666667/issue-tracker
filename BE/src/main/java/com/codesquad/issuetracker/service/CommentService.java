@@ -3,10 +3,12 @@ package com.codesquad.issuetracker.service;
 import com.codesquad.issuetracker.domain.Comment;
 import com.codesquad.issuetracker.repository.CommentRepository;
 import com.codesquad.issuetracker.request.EditedComment;
+import com.codesquad.issuetracker.response.CommentResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -23,19 +25,21 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public List<Comment> getComments(Long issueId) {
-        return commentRepository.getCommentsByIssueId(issueId);
+    public List<CommentResponse> getList(Long issueId) {
+        return commentRepository.getCommentsByIssueId(issueId).stream()
+                .map(comment -> CommentResponse.create(comment))
+                .collect(Collectors.toList());
     }
 
     @Transactional
-    public void editComment(Long commentId, EditedComment content) {
+    public void edit(Long commentId, EditedComment content) {
         Comment comment = commentRepository.getById(commentId);
         comment.setContent(content.getContent());
         commentRepository.save(comment);
     }
 
     @Transactional
-    public void removeComment(Long commentId) {
+    public void remove(Long commentId) {
         commentRepository.deleteById(commentId);
     }
 }
