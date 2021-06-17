@@ -1,5 +1,6 @@
 package com.codesquad.issuetracker.response;
 
+import com.codesquad.issuetracker.domain.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserResponse {
@@ -12,6 +13,10 @@ public class UserResponse {
     public UserResponse(String name, String userId) {
         this.name = name;
         this.userId = userId;
+    }
+
+    public static UserResponse create(User user) {
+        return new UserResponse(user.getName(), user.getLoginId());
     }
 
     public String getName() {
