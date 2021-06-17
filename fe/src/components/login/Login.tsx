@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import OAuthBtnGroup from './OAuthBtnGroup';
+import { API } from 'utils/API';
 
 const oauthBtnCommonStyle = {
   width: '200px',
@@ -28,7 +29,7 @@ const GithubOAuthBtn = withStyles({
 
 function Login(): ReactElement {
   const renderOAuthBtns = (): ReactElement[] => [
-    <GithubOAuthBtn key="0" variant="contained" disableRipple>Github</GithubOAuthBtn>
+    <GithubOAuthBtn key="0" variant="contained" href={API.githubLogin()}>Github</GithubOAuthBtn>
   ];
 
   return (
