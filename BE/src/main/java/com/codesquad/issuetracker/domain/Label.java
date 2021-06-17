@@ -4,6 +4,7 @@ import com.codesquad.issuetracker.request.LabelRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "label")
 @Getter
 @NoArgsConstructor
+@ToString
 public class Label {
 
     @Id
