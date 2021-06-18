@@ -134,7 +134,7 @@ public class IssueService {
     }
 
     private UserResponse makeUserResponses(User user) {
-        return new UserResponse(user.getName(), user.getLoginId());
+        return new UserResponse(user.getId(), user.getName(), user.getLoginId());
     }
 
     private MilestoneForIssueResponse makeMilestoneForIssueResponse(Long milestoneId) {
