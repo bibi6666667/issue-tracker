@@ -132,10 +132,6 @@ public class IssueService {
                 makeAssigneeForIssueResponse(issue.getId()), makeCommentResponse(issue.getId()));
     }
 
-    private UserResponse makeUserResponses(User user) {
-        return new UserResponse(user.getName(), user.getLoginId());
-    }
-
     private Set<LabelResponse> makeLabelResponses(Long issueId) {
         Set<Label> labels = getLabelsForIssue(issueId);
         Set<LabelResponse> result = new HashSet<>();
@@ -143,6 +139,10 @@ public class IssueService {
             result.add(LabelResponse.labelToLabelResponse(label));
         }
         return result;
+    }
+
+    private UserResponse makeUserResponses(User user) {
+        return UserResponse.create(user);
     }
 
     private MilestoneForIssueResponse makeMilestoneForIssueResponse(Long milestoneId) {
