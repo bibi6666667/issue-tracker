@@ -1,4 +1,5 @@
 import UIKit
+import NSObject_Rx
 
 class RedirectionViewController: UIViewController {
     
@@ -30,7 +31,7 @@ private extension RedirectionViewController {
     }
     
     private func moveToNextVC() {
-        guard let issueVC = storyboard?.instantiateViewController(withIdentifier: ViewControllerID.tabBar) else { return }
+        guard let issueVC = storyboard?.instantiateViewController(withIdentifier: "BlueViewController") else { return }
         issueVC.modalPresentationStyle = .fullScreen
         present(issueVC, animated: true, completion: nil)
     }

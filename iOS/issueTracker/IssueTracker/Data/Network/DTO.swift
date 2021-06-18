@@ -7,10 +7,18 @@
 
 import Foundation
 
+struct DTO: Decodable {
+    let data: LoginDTO
+}
+
 struct LoginDTO:Decodable {
-    let avatarUrl:String
-    let email:String?
-    let name:String
-    let token:String
-    let userName:String
+    let jwt: String
+    let data: User
+    let type: String
+}
+
+struct User: Decodable {
+    let id: Int
+    let name: String
+    let login_id: String
 }

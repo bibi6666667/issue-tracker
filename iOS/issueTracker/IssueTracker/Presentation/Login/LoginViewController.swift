@@ -2,20 +2,24 @@ import UIKit
 import AuthenticationServices
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var appleSignInButton: UIStackView!
+    @IBOutlet weak var gitbubSignInButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProviderLoginView()
-        // Do any additional setup after loading the view.
+        setupButtonAction()
     }
+    
     func setupProviderLoginView() {
       let authorizationButton = ASAuthorizationAppleIDButton()
       authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
       self.appleSignInButton.addArrangedSubview(authorizationButton)
     }
+    
     @objc
     func handleAuthorizationAppleIDButtonPress() {
       let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -25,6 +29,31 @@ class LoginViewController: UIViewController {
       authorizationController.delegate = self
       authorizationController.presentationContextProvider = self
       authorizationController.performRequests()
+    }
+    
+    private func setupButtonAction() {
+        setupGitbubSignInButton()
+    }
+    
+    
+    private func setupGitbubSignInButton() {
+        gitbubSignInButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                LoginManager.loginPost(API.githubLogin)
+                self?.moveToRedirectionVC()
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    private func moveToRedirectionVC() {
+        guard let redirectionVC = storyboard?.instantiateViewController(withIdentifier: ViewControllerID.redirect) else { return }
+        redirectionVC.modalPresentationStyle = .fullScreen
+        present(redirectionVC, animated: true, completion: nil)
+    }
+    
+    private func moveToNextVC() {
+        guard let issueVC = storyboard?.instantiateViewController(withIdentifier: ViewControllerID.blue) else { return }
+        issueVC.modalPresentationStyle = .fullScreen
+        present(issueVC, animated: true, completion: nil)
     }
 }
 

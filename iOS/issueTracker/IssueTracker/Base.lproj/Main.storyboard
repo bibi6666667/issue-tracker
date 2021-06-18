@@ -8,16 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Redirection View Controller-->
         <scene sceneID="ea3-gI-wDu">
             <objects>
-                <viewController id="uzh-BA-53b" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RedirectViewContoller" id="uzh-BA-53b" customClass="RedirectionViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X9H-cD-e9D">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="puppy" translatesAutoresizingMaskIntoConstraints="NO" id="SSu-Dw-rld">
-                                <rect key="frame" x="20" y="-358" width="350" height="1560"/>
+                                <rect key="frame" x="20" y="162" width="350" height="520"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8c0-0k-nKv"/>
@@ -36,7 +36,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,6 +160,7 @@
                     </view>
                     <connections>
                         <outlet property="appleSignInButton" destination="SyS-8J-Oxv" id="gWM-ny-81i"/>
+                        <outlet property="gitbubSignInButton" destination="Um4-jm-jYl" id="KX1-i5-nRK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -214,6 +215,21 @@
             </objects>
             <point key="canvasLocation" x="2700" y="1275"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="HmQ-Mi-6Ro">
+            <objects>
+                <viewController storyboardIdentifier="BlueViewController" id="rIt-l0-v7o" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sa9-pH-7by">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="AEA-wd-3ZB"/>
+                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U3Q-xm-1A2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="94"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lSW-RW-7c5">
             <objects>
@@ -261,6 +277,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

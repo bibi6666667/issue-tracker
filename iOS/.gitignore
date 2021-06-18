@@ -95,6 +95,9 @@ fastlane/test_output
 iOSInjectionProject/
 
 ### Xcode ###
+
+#Playground
+.playground
 # Xcode
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 

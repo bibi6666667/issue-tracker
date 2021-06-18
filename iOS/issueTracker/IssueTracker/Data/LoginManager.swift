@@ -10,13 +10,15 @@ class LoginManager {
     
     static func requestAccessToken(_ code:String) {
         guard let url = URL(string: API.getAccessToken+code) else { return }
-        let headers: HTTPHeaders = ["User-Agent":"IssueTrackerIOS/1.0"]
-        AF.request(url, method: .post, headers: headers)
-            .responseDecodable(of: LoginDTO.self) { response in
+        AF.request(url, method: .get)
+            .responseJSON { response in
+                dump(response) // 여기서 
                 switch response.result {
                 case .success(let loginData):
+                    dump(loginData)
                     LoginObserver.validLoginTry.post(object: loginData)
                 case .failure(let error):
+                    print(error)
                     LoginObserver.InvalidLoginTry.post(object: error)
                 }
             }
