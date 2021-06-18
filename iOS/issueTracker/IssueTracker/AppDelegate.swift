@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  issueTracker
-//
-//  Created by 김지선 on 2021/06/08.
-//
-
 import UIKit
 
 @main

@@ -4,9 +4,13 @@
 target 'IssueTracker' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for issueTracker
 pod 'SwiftLint'
+pod 'SnapKit'
+pod 'Alamofire'
+pod 'RxSwift'
+pod 'RxCocoa'
+pod 'NSObject_Rx'
+pod 'RxDataSources'
   target 'IssueTrackerTests' do
     inherit! :search_paths
     # Pods for testing
