@@ -1,5 +1,6 @@
 package com.codesquad.issuetracker.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,10 @@ public class Comment {
     @Setter
     private String content;
 
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
+
+    @JsonProperty("issue_id")
     private Long issueId;
 
     @OneToOne
