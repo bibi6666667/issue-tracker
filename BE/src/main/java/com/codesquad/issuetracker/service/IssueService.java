@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class IssueService {
@@ -57,9 +56,19 @@ public class IssueService {
         return issueToIssueResponse(issue);
     }
 
-    public IssueResponse addIssue(Issue issue) {
-        return issueToIssueResponse(issueRepository.save(issue));
-    } // IssueRequest의 User 수정 필요
+    public IssueResponse addIssue(IssueRequest issueRequest) {
+        Issue savedIssue = issueRepository.save(Issue.issueRequestToIssue(issueRequest));
+        List<Long> labelIdList = issueRequest.getLabelList();
+        for (Long labelId : labelIdList) {
+            issueLabelRepository.save(new IssueLabel(savedIssue, labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new)));
+        }
+        List<AssigneeRequest> assigneeRequestList = issueRequest.getAssigneeList();
+        for (AssigneeRequest assigneeRequest : assigneeRequestList) {
+            Assignee assignee = new Assignee(savedIssue.getId(), assigneeRequest.getUserId());
+            assigneeRepository.save(assignee);
+        }
+        return issueToIssueResponse(savedIssue);
+    }
 
     public void updateTitle(Long issueId, IssueRequest issueRequest) {
         Issue updateIssue = issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new);
@@ -72,10 +81,9 @@ public class IssueService {
         ArrayList<AssigneeRequest> assigneeRequestList = issueRequest.getAssigneeList();
         List<Assignee> assigneesToSet = new ArrayList<>();
         for (AssigneeRequest assigneeRequest : assigneeRequestList) {
-            assigneesToSet.add(Assignee.assigneeRequestToassignee(assigneeRequest));
+            assigneesToSet.add(Assignee.assigneeRequestToassignee(issueId, assigneeRequest));
+            assigneeRepository.save(Assignee.assigneeRequestToassignee(issueId, assigneeRequest));
         }
-        updateIssue.setAssignees(assigneesToSet);
-        issueRepository.save(updateIssue);
     }
 
     public void updateContent(Long issueId, IssueRequest issueRequest) {
@@ -93,14 +101,14 @@ public class IssueService {
     public void updateLabel(Long issueId, IssueRequest issueRequest) {
         // IssueLabel을 Issue의 ID 기준으로 찾아 온 다음 더하거나(INSERT) 삭제(DELETE)한다
         List<Long> labelIdsBeEdited = issueLabelRepository.findIssueLabelsLabelIdByIssueId(issueId); // 원본
-        ArrayList<Label> labelsToEdit = issueRequest.getLabelList(); // 요청 (수정할것)
-        List<Long> labelIdsToEdit = labelsToEdit.stream().map(label -> label.getId()).collect(Collectors.toList());
-        for (Label label : labelsToEdit) {
-            if (labelIdsBeEdited.contains(label.getId())) { // 원본에 요청항목이 존재하면 넘어감 (추가/삭제 필요 x)
+        ArrayList<Long> labelIdsToEdit = issueRequest.getLabelList(); // 요청 (수정할것)
+        for (Long labelId : labelIdsToEdit) {
+            if (labelIdsBeEdited.contains(labelId)) { // 원본에 요청항목이 존재하면 넘어감 (추가/삭제 필요 x)
                 continue;
             }
-            if (!labelIdsBeEdited.contains(label.getId())) { // 원본에 수정할 항목이 없으면 추가함
-                IssueLabel issueLabel = IssueLabel.issueToIssueLabel(issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new), label);
+            if (!labelIdsBeEdited.contains(labelId)) { // 원본에 수정할 항목이 없으면 추가함
+                IssueLabel issueLabel = IssueLabel.issueToIssueLabel(issueRepository.findById(issueId).orElseThrow(NoSuchIssueException::new),
+                        labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new));
                 issueLabelRepository.save(issueLabel);
             }
         }
