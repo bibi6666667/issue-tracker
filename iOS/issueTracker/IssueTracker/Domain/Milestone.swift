@@ -1,17 +1,21 @@
-//
-//  Milestone.swift
-//  IssueTracker
-//
-//  Created by 김지선 on 2021/06/18.
-//
-
 import Foundation
 
-struct Milestone {
+struct Milestone: Decodable {
+    let id: Int
     var title: String
     var content: String
     var dueDate: String
     var openIssues: Int
     var closeIssues: Int
     var progress: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case content
+        case dueDate = "due_date"
+        case openIssues = "open_issue"
+        case closeIssues = "close_issue"
+        case progress
+    }
 }

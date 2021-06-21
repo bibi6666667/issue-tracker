@@ -167,7 +167,7 @@
             </objects>
             <point key="canvasLocation" x="69.230769230769226" y="88.862559241706151"/>
         </scene>
-        <!--Item-->
+        <!--Issue-->
         <scene sceneID="duG-5v-o1f">
             <objects>
                 <viewController id="LrD-c6-HVC" sceneMemberID="viewController">
@@ -177,13 +177,13 @@
                         <viewLayoutGuide key="safeArea" id="4ku-ex-dHh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="4lR-is-2pt"/>
+                    <tabBarItem key="tabBarItem" title="Issue" image="info.circle" catalog="system" id="4lR-is-2pt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ojj-Qi-Ybv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2700" y="-719"/>
         </scene>
-        <!--Item-->
+        <!--Label-->
         <scene sceneID="s7b-m1-J1v">
             <objects>
                 <viewController id="Zwt-UY-RP2" sceneMemberID="viewController">
@@ -193,13 +193,13 @@
                         <viewLayoutGuide key="safeArea" id="ze5-8v-Nsu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="xmd-AH-FTg"/>
+                    <tabBarItem key="tabBarItem" title="Label" image="tag" catalog="system" id="xmd-AH-FTg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA8-5I-Uqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2700" y="-55"/>
         </scene>
-        <!--Item-->
+        <!--My Account-->
         <scene sceneID="TcZ-np-7TC">
             <objects>
                 <viewController id="WJa-fW-t78" sceneMemberID="viewController">
@@ -209,7 +209,7 @@
                         <viewLayoutGuide key="safeArea" id="6Zj-3c-lPw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="q9r-li-2aa"/>
+                    <tabBarItem key="tabBarItem" title="My Account" image="person" catalog="system" id="q9r-li-2aa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCz-KT-kOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,17 +251,17 @@
             </objects>
             <point key="canvasLocation" x="1676.9230769230769" y="107.34597156398104"/>
         </scene>
-        <!--Item-->
+        <!--Milestone-->
         <scene sceneID="U4s-Ck-kGk">
             <objects>
-                <viewController id="AH8-Wj-Bze" sceneMemberID="viewController">
+                <viewController id="AH8-Wj-Bze" customClass="MilestoneViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Euv-V8-M72">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="J3G-uU-CIw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="6Bu-dB-HJJ"/>
+                    <tabBarItem key="tabBarItem" title="Milestone" image="signpost.right" catalog="system" id="6Bu-dB-HJJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gP3-tE-bR2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -271,7 +271,11 @@
     <resources>
         <image name="Logo" width="292" height="37"/>
         <image name="github_login_button" width="343" height="56"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="puppy" width="390" height="520"/>
+        <image name="signpost.right" catalog="system" width="128" height="118"/>
+        <image name="tag" catalog="system" width="128" height="119"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
