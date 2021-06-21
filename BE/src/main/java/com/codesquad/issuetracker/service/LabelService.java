@@ -21,8 +21,8 @@ public class LabelService {
     }
 
     @Transactional
-    public Label create(Label label) {
-        return labelRepository.save(label);
+    public LabelResponse create(Label label) {
+        return LabelResponse.create(labelRepository.save(label));
     }
 
 
