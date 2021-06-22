@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -15,9 +16,11 @@ import { currLabelsState } from "utils/states";
 import { useEffect } from "react";
 import { URL } from "utils/urls";
 import styled from "styled-components";
+import TransitionsModal from "components/common/TransitionsModal";
 
 function LabelPage() {
   const [labelState, setLabelState] = useRecoilState(currLabelsState);
+  const [open, setOpenState] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
@@ -35,6 +38,14 @@ function LabelPage() {
     request();
   }, []);
 
+  const handleOpenModal = () => {
+    setOpenState(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenState(false);
+  };
+
   return (
     <div>
       <Header />
@@ -43,9 +54,14 @@ function LabelPage() {
           <Button href="/labels">레이블</Button>
           <Button href="/milestones">마일스톤</Button>
         </ButtonGroup>
-        <Button variant="contained" color="primary">
+        {/* <Button
+          onClick={() => setAddLabelState(!addLabelState)}
+          variant="contained"
+          color="primary"
+        >
           추가
-        </Button>
+        </Button> */}
+        <TransitionsModal {...{ open, handleCloseModal, handleOpenModal }} mode="label" />
       </HeaderButtons>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
