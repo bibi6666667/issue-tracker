@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 export default function Others() {
   const classes = useStyles();
@@ -9,8 +10,8 @@ export default function Others() {
   return (
     <div className={classes.root}>
       <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-        <Button>레이블</Button>
-        <Button>마일스톤</Button>
+        <Button href="/labels">레이블</Button>
+        <Button href="/milestones">마일스톤</Button>
       </ButtonGroup>
       <Button href="/editor" size="large" variant="contained" color="primary">
         이슈 작성

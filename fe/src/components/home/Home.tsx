@@ -3,7 +3,7 @@ import Header from "components/common/Header";
 import styled from "styled-components";
 import Filter from "./Filter";
 import IssueList from "./IssueList";
-import Others from "./Others";
+import Others from "../common/Others";
 
 const options = [
   { title: "열린 이슈", key: "openIssue" },

@@ -3,7 +3,7 @@ export interface ListItemsType {
   title: string;
 }
 
-interface LabelType extends ListItemsType {
+export interface LabelType extends ListItemsType {
   color: string;
 }
 

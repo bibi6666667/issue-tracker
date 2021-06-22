@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IssueType, ListItemsType } from "utils/interface";
+import { IssueType, ListItemsType, LabelType } from "utils/interface";
 
 export const openState = atom({
   key: "openState",
@@ -58,4 +58,9 @@ export const temporalRefState = atom({
 export const currDetailState = atom({
   key: "currDetailState",
   default: -1,
+});
+
+export const currLabelsState = atom({
+  key: "currLabelsState",
+  default: [] as LabelType[],
 });

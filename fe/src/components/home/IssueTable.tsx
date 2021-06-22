@@ -40,7 +40,7 @@ export default function IssueTable({ issueListItems }: IssueTableType) {
                 {item.label_list.map((label) => (
                   <Chip
                     className={classes.chip}
-                    style={{ backgroundColor: label.color }}
+                    style={{ backgroundColor: `#${label.color}` }}
                     size="small"
                     label={label.title}
                   />

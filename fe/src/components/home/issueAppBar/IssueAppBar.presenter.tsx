@@ -22,7 +22,7 @@ export default function IssueAppBarPresenter(props: IssueAppBarPresenterProps) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <CheckBoxAppBar />
           {selectedIssues.size > 0 ? (
@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
+    },
+    appBar: {
+      marginBottom: "10px",
     },
   })
 );
