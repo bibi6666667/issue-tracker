@@ -1,6 +1,6 @@
 import { IssueType } from "utils/interface";
 
-export const openedIssue: IssueType[] = [
+export const mock_openedIssue: IssueType[] = [
   {
     id: 3,
     title: "test open title1",
@@ -8,17 +8,19 @@ export const openedIssue: IssueType[] = [
     status: true,
     created_at: "2021-06-08 15:00:00",
     label_list: [
-      { id: 10, title: "BE", content: null, color: "#f59342" },
-      { id: 12, title: "Feature", content: null, color: "#1ed469" },
+      { id: 10, title: "BE", color: "#f59342" },
+      { id: 12, title: "Feature", color: "#1ed469" },
     ],
     author: {
       name: "bibi",
       user_id: "bibi6666667",
     },
-    assignee: {
-      name: "bibi",
-      user_id: "bibi6666667",
-    },
+    assignees: [
+      {
+        name: "bibi",
+        user_id: "bibi6666667",
+      },
+    ],
     milestone: {
       milestone_id: 1,
       title: "[BE] API구현",
@@ -31,17 +33,19 @@ export const openedIssue: IssueType[] = [
     status: true,
     created_at: "2021-06-08 15:00:00",
     label_list: [
-      { id: 10, title: "BE", content: null, color: "#f59342" },
-      { id: 12, title: "Feature", content: null, color: "#1ed469" },
+      { id: 10, title: "BE", color: "#f59342" },
+      { id: 12, title: "Feature", color: "#1ed469" },
     ],
     author: {
       name: "bibi",
       user_id: "bibi6666667",
     },
-    assignee: {
-      name: "bibi",
-      user_id: "bibi6666667",
-    },
+    assignees: [
+      {
+        name: "bibi",
+        user_id: "bibi6666667",
+      },
+    ],
     milestone: {
       milestone_id: 1,
       title: "[BE] API구현",

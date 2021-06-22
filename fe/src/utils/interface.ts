@@ -4,7 +4,6 @@ export interface ListItemsType {
 }
 
 interface LabelType extends ListItemsType {
-  content: string | null;
   color: string;
 }
 
@@ -19,10 +18,10 @@ export interface IssueType {
     name: string;
     user_id: string;
   };
-  assignee: {
+  assignees: {
     name: string;
     user_id: string;
-  };
+  }[];
   milestone: {
     milestone_id: number;
     title: string;
@@ -51,6 +50,16 @@ export interface IssueRefMenuProps {
 }
 
 export interface SimpleAppBarProps {
-  openedIssue: IssueType[];
-  closedIssue: IssueType[];
+  openIssues: IssueType[];
+  closeIssues: IssueType[];
+}
+
+export interface EditorRefsType {
+  [key: string]: any;
+}
+
+export interface TemporalRefStateType {
+  assignees: ListItemsType[];
+  labels: LabelType[];
+  milestones: ListItemsType[];
 }
