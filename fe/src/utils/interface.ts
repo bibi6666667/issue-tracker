@@ -1,3 +1,9 @@
+export interface UserType {
+  id: number;
+  name: string;
+  login_id: string;
+}
+
 export interface ListItemsType {
   id: number | string;
   title: string;
@@ -44,8 +50,15 @@ export interface IssueRefStateType {
   label: string;
 }
 
+export interface IssueRefArrayType {
+  assignee: ListItemsType[];
+  author: ListItemsType[];
+  milestone: ListItemsType[];
+  label: ListItemsType[];
+}
+
 export interface IssueRefMenuProps {
-  buttonTitle: keyof IssueRefStateType;
+  buttonTitle: any;
   listItems: ListItemsType[];
 }
 

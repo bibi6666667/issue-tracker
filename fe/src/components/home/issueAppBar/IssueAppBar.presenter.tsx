@@ -1,6 +1,6 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Tabs, Tab, Typography } from "@material-ui/core";
-import { IssueRefMenuProps } from "utils/interface";
+import { IssueRefArrayType } from "utils/interface";
 import IssueRefMenuContainer from "../issueRefMenu/IssueRefMenu.container";
 import { useRecoilValue } from "recoil";
 import { openState, selectedIssuesState } from "utils/states";
@@ -11,7 +11,7 @@ import CheckBoxAppBar from "../styles/CheckBox.AppBar";
 interface IssueAppBarPresenterProps extends SimpleAppBarProps {
   showOpenIssue: () => void;
   showCloseIssue: () => void;
-  issueRefArray: IssueRefMenuProps[];
+  issueRefArray: IssueRefArrayType;
 }
 
 export default function IssueAppBarPresenter(props: IssueAppBarPresenterProps) {
@@ -33,9 +33,11 @@ export default function IssueAppBarPresenter(props: IssueAppBarPresenterProps) {
               <Tab onClick={showCloseIssue} label={`닫힌 이슈(${closeIssues.length})`} />
             </Tabs>
           )}
-          {issueRefArray.map(({ buttonTitle, listItems }) => (
-            <IssueRefMenuContainer {...{ buttonTitle, listItems }} />
-          ))}
+          {Object.entries(issueRefArray).map((el) => {
+            console.log(el);
+            const [key, value] = el;
+            return <IssueRefMenuContainer buttonTitle={key} listItems={value} />;
+          })}
         </Toolbar>
       </AppBar>
       <IssueTable issueListItems={isOpenState ? openIssues : closeIssues} />

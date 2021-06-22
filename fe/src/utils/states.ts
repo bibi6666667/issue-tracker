@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IssueType, ListItemsType, LabelType } from "utils/interface";
+import { IssueType, ListItemsType, LabelType, UserType, IssueRefArrayType } from "utils/interface";
 
 export const openState = atom({
   key: "openState",
@@ -21,14 +21,24 @@ export const selectIssueAll = atom({
   default: false,
 });
 
-export const refFileterState = atom({
-  key: "selectState",
+// export const refFileterState = atom({
+//   key: "selectState",
+//   default: {
+//     assignee: "",
+//     author: "",
+//     milestone: "",
+//     label: "",
+//   },
+// });
+
+export const issueRefArrayState = atom({
+  key: "issueRefArrayState",
   default: {
-    assignee: "",
-    author: "",
-    milestone: "",
-    label: "",
-  },
+    assignee: [] as ListItemsType[],
+    author: [] as ListItemsType[],
+    milestone: [] as ListItemsType[],
+    label: [] as ListItemsType[],
+  } as IssueRefArrayType,
 });
 
 export const selectedIssuesState = atom({
