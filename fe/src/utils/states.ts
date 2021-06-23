@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IssueType, ListItemsType, LabelType, UserType, IssueRefArrayType } from "utils/interface";
+import { IssueType, MilestoneType, ListItemsType, LabelType, UserType } from "utils/interface";
 
 export const openState = atom({
   key: "openState",
@@ -21,15 +21,15 @@ export const selectIssueAll = atom({
   default: false,
 });
 
-// export const refFileterState = atom({
-//   key: "selectState",
-//   default: {
-//     assignee: "",
-//     author: "",
-//     milestone: "",
-//     label: "",
-//   },
-// });
+export const refFileterState = atom({
+  key: "refFileterState",
+  default: {
+    assignee: "",
+    author: "",
+    milestone: "",
+    label: "",
+  },
+});
 
 export const issueRefArrayState = atom({
   key: "issueRefArrayState",
@@ -38,7 +38,7 @@ export const issueRefArrayState = atom({
     author: [] as ListItemsType[],
     milestone: [] as ListItemsType[],
     label: [] as ListItemsType[],
-  } as IssueRefArrayType,
+  },
 });
 
 export const selectedIssuesState = atom({
@@ -73,4 +73,9 @@ export const currDetailState = atom({
 export const currLabelsState = atom({
   key: "currLabelsState",
   default: [] as LabelType[],
+});
+
+export const currMilestoneState = atom({
+  key: "currMilestoneState",
+  default: [] as MilestoneType[],
 });

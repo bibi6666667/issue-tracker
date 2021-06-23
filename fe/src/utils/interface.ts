@@ -13,6 +13,11 @@ export interface LabelType extends ListItemsType {
   color: string;
 }
 
+export interface MilestoneType extends ListItemsType {
+  due_date: string;
+  color: string;
+}
+
 export interface IssueType {
   id: number;
   title: string;
@@ -44,21 +49,27 @@ export interface UsefulObjectType {
 }
 
 export interface IssueRefStateType {
-  assignee: string;
-  author: string;
-  milestone: string;
-  label: string;
+  assignee: string | ListItemsType[];
+  author: string | ListItemsType[];
+  milestone: string | ListItemsType[];
+  label: string | ListItemsType[];
 }
 
-export interface IssueRefArrayType {
-  assignee: ListItemsType[];
-  author: ListItemsType[];
-  milestone: ListItemsType[];
-  label: ListItemsType[];
+export interface TemporalRefStateType {
+  assignees: ListItemsType[];
+  labels: LabelType[];
+  milestones: ListItemsType[];
 }
+
+// export interface IssueRefArrayType {
+//   assignee: ListItemsType[];
+//   author: ListItemsType[];
+//   milestone: ListItemsType[];
+//   label: ListItemsType[];
+// }
 
 export interface IssueRefMenuProps {
-  buttonTitle: any;
+  buttonTitle: keyof IssueRefStateType;
   listItems: ListItemsType[];
 }
 
@@ -69,10 +80,4 @@ export interface SimpleAppBarProps {
 
 export interface EditorRefsType {
   [key: string]: any;
-}
-
-export interface TemporalRefStateType {
-  assignees: ListItemsType[];
-  labels: LabelType[];
-  milestones: ListItemsType[];
 }

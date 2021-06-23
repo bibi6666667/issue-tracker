@@ -6,6 +6,7 @@ import { throttleAndDebounce } from "utils/debounceAndThrottle.js";
 import { URL } from "utils/urls";
 import { useRecoilState } from "recoil";
 import { currLabelsState } from "utils/states";
+import styled from "styled-components";
 
 interface TransitionsModalProps {
   open: boolean;
@@ -17,43 +18,41 @@ interface TransitionsModalProps {
 export default function TransitionsModal(props: TransitionsModalProps) {
   const { open, handleCloseModal, handleOpenModal, mode } = props;
   const classes = useStyles();
-  const title = useRef<any>(null);
-  const labelColor = useRef<any>(null);
+  const titleRef = useRef<any>(null);
+  const labelColorRef = useRef<any>(null);
+  const milestoneContentRef = useRef<any>(null);
+  const milestoneDueDateRef = useRef<any>(null);
   const [labelState, setLabelState] = useRecoilState(currLabelsState);
 
   const save = () => {
-    if (mode === "label") {
-      fetch(URL.endPoint("label"), {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          content: null,
-          color: labelColor,
-        }),
-      });
+    if (mode === "createLabel") {
+      const request = async () => {
+        const response = await fetch(URL.endPoint("label"), {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: titleRef.current.value,
+            content: null,
+            color: labelColorRef.current.value,
+          }),
+        });
+        const newLabel = await response.json();
+        const newLabels = [...labelState].concat({ ...newLabel.data });
+        setLabelState(newLabels);
+        sessionStorage.setItem("labels", JSON.stringify(newLabels));
+      };
+      request();
       handleCloseModal();
-      setLabelState(
-        [...labelState].concat({
-          id: labelState.length,
-          title: title.current.value,
-          color: labelColor.current.value,
-        })
-      );
+      return;
+    }
+    if (mode === "createMilestone") {
+      const request = async () => {
+        const response = await fetch(URL.endPoint("milestone"), {});
+      };
     }
   };
-
-  // const handleChange = (e: React.ChangeEvent, keyName: string) => {
-  // const _ = throttleAndDebounce();
-  // const debounce =
-  //   keyName === "title"
-  //     ? _.debounce(() => setTitle(e.target?.nodeValue), 200)
-  //     : _.debounce(() => setLabelColor(e.target?.nodeValue || "#fff"), 200);
-
-  // debounce();
-  // };
 
   return (
     <div>
@@ -75,16 +74,30 @@ export default function TransitionsModal(props: TransitionsModalProps) {
         <Fade in={open}>
           <div className={classes.paper}>
             <Typography variant="h5" gutterBottom>
-              {mode === "label" ? "레이블 추가" : "마일스톤 추가"}
+              {mode === "createLabel" ? "레이블 추가" : "마일스톤 추가"}
             </Typography>
             <TextField
               required
-              ref={title}
+              inputRef={titleRef}
               placeholder="이름"
-              label={mode === "label" ? "Label Title" : "Milestone Title"}
+              label={mode === "createLabel" ? "Label Title" : "Milestone Title"}
             />
-            {mode === "label" && (
-              <TextField ref={labelColor} placeholder="색깔" label="Label Color" />
+            {mode === "createLabel" && (
+              <TextField inputRef={labelColorRef} placeholder="색깔" label="Label Color" />
+            )}
+            {mode === "createMilestone" && (
+              <TextFields>
+                <TextField
+                  inputRef={milestoneContentRef}
+                  placeholder="내용"
+                  label="Milestone Content"
+                />
+                <TextField
+                  inputRef={milestoneDueDateRef}
+                  placeholder="기한"
+                  label="Milestone Due-date"
+                />
+              </TextFields>
             )}
             <Button onClick={save} variant="contained" color="primary">
               저장
@@ -95,6 +108,11 @@ export default function TransitionsModal(props: TransitionsModalProps) {
     </div>
   );
 }
+
+const TextFields = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -50,6 +50,15 @@ export default function IssueAppBarContainer() {
       });
     };
     const getLabels = async () => {
+      const sessionStorageLabels = sessionStorage.getItem("labels");
+      if (sessionStorageLabels) {
+        const data = JSON.parse(sessionStorageLabels);
+        setIssueRefArray({
+          ...issueRefArray,
+          label: [...data].map((e) => ({ id: e.id, title: e.title })),
+        });
+        return;
+      }
       const response = await fetch(URL.endPoint("label"));
       const json = await response.json();
       const data = json.data;
