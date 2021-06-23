@@ -21,58 +21,36 @@ export default function IssueAppBarContainer() {
   const setClose = useSetRecoilState(closeState);
   const [issueRefArray, setIssueRefArray] = useRecoilState(issueRefArrayState);
 
-  useEffect(() => {
-    const getAssignees = async () => {
-      const response = await fetch(URL.endPoint("user/assignee"));
-      const json = await response.json();
-      const data = json.data;
-      const value = [...data].map((e) => ({ id: e.login_id, title: e.name }));
-      setIssueRefArray({
-        ...issueRefArray,
-        assignee: value,
-      });
-      sessionStorage.setItem("assigneeListItems", JSON.stringify(value));
-    };
-    const getAuthors = async () => {
-      const response = await fetch(URL.endPoint("user/author"));
-      const json = await response.json();
-      const data = json.data;
-      const value = [...data].map((e) => ({ id: e.login_id, title: e.name }));
-      setIssueRefArray({
-        ...issueRefArray,
-        author: value,
-      });
-      sessionStorage.setItem("authorListItems", JSON.stringify(value));
-    };
-    const getMilestones = async () => {
-      const response = await fetch(URL.endPoint("milestone"));
-      const json = await response.json();
-      const data = json.data;
-      const value = [...data].map((e) => ({ id: e.id, title: e.title }));
-      setIssueRefArray({
-        ...issueRefArray,
-        milestone: value,
-      });
-      sessionStorage.setItem("milestoneListItems", JSON.stringify(value));
-    };
-    const getLabels = async () => {
-      const response = await fetch(URL.endPoint("label"));
-      const json = await response.json();
-      const data = json.data;
-      const value = [...data].map((e) => ({ id: e.id, title: e.title }));
-      setIssueRefArray({
-        ...issueRefArray,
-        label: value,
-      });
-      sessionStorage.setItem("labelListItems", JSON.stringify(value));
-    };
-    getAssignees();
-    getAuthors();
-    getMilestones();
-    getLabels();
-  }, []);
-
   console.log(issueRefArray);
+
+  useEffect(() => {
+    const getResponse = async () => {
+      const assigneeRes = await fetch(URL.endPoint("user/assignee"));
+      const authorRes = await fetch(URL.endPoint("user/author"));
+      const labelRes = await fetch(URL.endPoint("label"));
+      const milestoneRes = await fetch(URL.endPoint("milestone"));
+      const assigneeJson = await assigneeRes.json();
+      const authorJson = await authorRes.json();
+      const labelJson = await labelRes.json();
+      const milestoneJson = await milestoneRes.json();
+      const assignee = assigneeJson.data;
+      const author = authorJson.data;
+      const milestone = milestoneJson.data;
+      const label = labelJson.data;
+      setIssueRefArray({
+        ...issueRefArray,
+        assignee: [...assignee].map((e) => ({ id: e.login_id, title: e.name })),
+        author: [...author].map((e) => ({ id: e.login_id, title: e.name })),
+        milestone: [...milestone].map((e) => ({ id: e.id, title: e.title })),
+        label: [...label].map((e) => ({ id: e.id, title: e.title })),
+      });
+      sessionStorage.setItem("assigneeListItems", JSON.stringify(assignee));
+      sessionStorage.setItem("milestoneListItems", JSON.stringify(milestone));
+      sessionStorage.setItem("authorListItems", JSON.stringify(author));
+      sessionStorage.setItem("labelListItems", JSON.stringify(label));
+    };
+    getResponse();
+  }, []);
 
   const showOpenIssue = () => {
     setClose(false);
@@ -84,11 +62,7 @@ export default function IssueAppBarContainer() {
     setClose(true);
   };
 
-  return (
-    <IssueAppBarPresenter
-      {...{ openIssues, closeIssues, showCloseIssue, showOpenIssue, issueRefArray }}
-    />
-  );
+  return <IssueAppBarPresenter {...{ openIssues, closeIssues, showCloseIssue, showOpenIssue }} />;
 }
 
 // const issueRefArray: IssueRefMenuProps[] = [

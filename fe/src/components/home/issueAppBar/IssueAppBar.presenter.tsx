@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Tabs, Tab, Typography } from "@material-ui/core";
 import { IssueRefStateType } from "utils/interface";
 import IssueRefMenuContainer from "../issueRefMenu/IssueRefMenu.container";
 import { useRecoilValue } from "recoil";
-import { openState, selectedIssuesState } from "utils/states";
+import { issueRefArrayState, openState, selectedIssuesState } from "utils/states";
 import { SimpleAppBarProps } from "utils/interface";
 import IssueTable from "../IssueTable";
 import CheckBoxAppBar from "../styles/CheckBox.AppBar";
@@ -11,14 +11,16 @@ import CheckBoxAppBar from "../styles/CheckBox.AppBar";
 interface IssueAppBarPresenterProps extends SimpleAppBarProps {
   showOpenIssue: () => void;
   showCloseIssue: () => void;
-  issueRefArray: IssueRefStateType;
 }
 
 export default function IssueAppBarPresenter(props: IssueAppBarPresenterProps) {
   const classes = useStyles();
-  const { openIssues, closeIssues, showOpenIssue, showCloseIssue, issueRefArray } = props;
+  const { openIssues, closeIssues, showOpenIssue, showCloseIssue } = props;
   const isOpenState = useRecoilValue(openState);
   const selectedIssues = useRecoilValue(selectedIssuesState);
+  const issueRefArray = useRecoilValue(issueRefArrayState);
+
+  console.log(issueRefArray);
 
   return (
     <div className={classes.root}>

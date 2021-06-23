@@ -3,7 +3,7 @@ import { atom, useRecoilState, useRecoilValue } from "recoil";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import IssueEditorPresenter from "./IssueEditor.presenter";
 import { URL } from "utils/urls";
-import { temporalRefState } from "utils/states";
+import { issueRefArrayState, temporalRefState } from "utils/states";
 import { useEffect } from "react";
 
 const issueDetailContentState = atom({
@@ -19,9 +19,7 @@ const issueDetailContentState = atom({
 });
 
 function IssueEditorContainer() {
-  const [issueDetailContent, setIssueDetailContent] = useRecoilState(issueDetailContentState);
-  const temporalState = useRecoilValue(temporalRefState);
-  const { assignees, labels, milestones } = temporalState;
+  // const [issueDetailContent, setIssueDetailContent] = useRecoilState(issueDetailContentState);
 
   const editorRef = useRef<any>(null);
   const titleRef = useRef<any>(null);

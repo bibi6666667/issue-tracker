@@ -3,11 +3,12 @@ import { Grid } from "@material-ui/core";
 import { labels } from "data/label";
 import { milestones } from "data/milestone";
 import { assiginees } from "data/people";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { EditorRefsType, TemporalRefStateType } from "utils/interface";
-import { temporalRefState } from "utils/states";
+// import { temporalRefState } from "utils/states";
 import AccordionPanel from "./AccordionPanel";
 import { URL } from "utils/urls";
+import { issueRefArrayState, temporalRefState } from "utils/states";
 
 export default function EditorAccordion({ assigneesRef, milestoneRef, labelsRef }: EditorRefsType) {
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -17,6 +18,20 @@ export default function EditorAccordion({ assigneesRef, milestoneRef, labelsRef 
   //   milestones: [],
   // });
   const [temporalState, setTemporalState] = useRecoilState(temporalRefState);
+  const [issueRefArray, setIssueRefArray] = useRecoilState(issueRefArrayState);
+  console.log(issueRefArray);
+
+  useEffect(() => {
+    const assignee = sessionStorage.getItem("assigneeListItems");
+    if (assignee) {
+      setIssueRefArray({
+        ...issueRefArray,
+        assignee: JSON.parse(assignee).map((e: any) => ({ id: e.id, title: e.name })),
+      });
+    }
+
+    const milestone = sessionStorage.getItem("milestoneListItems"); // TODO: 라벨, 마일스톤 데이터 받아서 IssueRefArray로 하기
+  }, []);
 
   // useEffect(() => {
   //   const getLabels = async () => {
