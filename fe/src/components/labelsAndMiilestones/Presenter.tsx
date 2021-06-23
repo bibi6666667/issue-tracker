@@ -12,7 +12,7 @@ import {
 import Header from "components/common/Header";
 import styled from "styled-components";
 import TransitionsModal from "./TransitionsModal";
-import { LabelType, MilestoneType } from "utils/interface";
+import { MilestoneType } from "utils/interface";
 
 interface LabelPageProps {
   open: boolean;

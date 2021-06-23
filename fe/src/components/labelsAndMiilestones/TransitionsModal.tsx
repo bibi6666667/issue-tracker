@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button, Backdrop, Fade, TextField, Typography } from "@material-ui/core";
-import { throttleAndDebounce } from "utils/debounceAndThrottle.js";
 import { URL } from "utils/urls";
 import { useRecoilState } from "recoil";
-import { currLabelsState } from "utils/states";
+import { currLabelsState, currMilestoneState } from "utils/states";
 import styled from "styled-components";
 
 interface TransitionsModalProps {
@@ -23,6 +22,7 @@ export default function TransitionsModal(props: TransitionsModalProps) {
   const milestoneContentRef = useRef<any>(null);
   const milestoneDueDateRef = useRef<any>(null);
   const [labelState, setLabelState] = useRecoilState(currLabelsState);
+  const [milestoneState, setMilestoneState] = useRecoilState(currMilestoneState);
 
   const save = () => {
     if (mode === "createLabel") {
@@ -49,8 +49,25 @@ export default function TransitionsModal(props: TransitionsModalProps) {
     }
     if (mode === "createMilestone") {
       const request = async () => {
-        const response = await fetch(URL.endPoint("milestone"), {});
+        const response = await fetch(URL.endPoint("milestone"), {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: titleRef.current.value,
+            content: milestoneContentRef.current.value,
+            due_date: milestoneDueDateRef.current.value,
+          }),
+        });
+        const newMiletone = await response.json();
+        const newMilestones = [...milestoneState].concat({ ...newMiletone.data });
+        setMilestoneState(newMilestones);
+        sessionStorage.setItem("milestones", JSON.stringify(newMilestones));
       };
+
+      request();
+      handleCloseModal();
     }
   };
 
@@ -93,7 +110,7 @@ export default function TransitionsModal(props: TransitionsModalProps) {
                   label="Milestone Content"
                 />
                 <TextField
-                  inputRef={milestoneDueDateRef}
+                  inputRef={milestoneDueDateRef} // TODO: 달력으로 바꾸기
                   placeholder="기한"
                   label="Milestone Due-date"
                 />
