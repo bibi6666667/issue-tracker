@@ -13,7 +13,7 @@ interface IssueEditorPresenterProps extends EditorRefsType {
 }
 
 export default function IssueEditorPresenter(props: IssueEditorPresenterProps) {
-  const { handleSubmit, editorRef, titleRef, assigneesRef, labelsRef, milestoneRef } = props;
+  const { handleSubmit, editorRef, titleRef } = props;
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ export default function IssueEditorPresenter(props: IssueEditorPresenterProps) {
           <EditorBody>
             <Grid container spacing={2}>
               <EditorContent {...{ editorRef, titleRef }} />
-              <EditorAccordion {...{ assigneesRef, labelsRef, milestoneRef }} />
+              <EditorAccordion />
             </Grid>
           </EditorBody>
         </Paper>

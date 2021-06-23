@@ -23,45 +23,41 @@ function IssueEditorContainer() {
 
   const editorRef = useRef<any>(null);
   const titleRef = useRef<any>(null);
-  const assigneesRef = useRef<any>(null);
-  const labelsRef = useRef<any>(null);
-  const milestoneRef = useRef<any>(null);
+  const temporalState = useRecoilValue(temporalRefState);
+
+  console.log(temporalState);
 
   const handleSubmit = () => {
     const editorInstance = editorRef.current.getInstance();
     const content_md = editorInstance.getMarkdown();
     const content_html = editorInstance.getHTML();
-    const title = titleRef.current.value;
-    // const body = JSON.stringify({
-    //   title,
-    //   content: content_html,
-    //   created_at: new Date(),
-    //   user: {
-    //     id: 1,
-    //     name: "bibi",
-    //     login_id: "bibi6666667",
-    //   },
-    //   milestone_id: milestones[0].id,
-    //   label_list: labels.map(lab => Object.assign(lab, {}))
-    // });
-    // fetch(URL.issue("issue"), {
-    //   method: "post",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // setIssueDetailContent({
-    //   title,
-    //   content_md,
-    //   content_html,
-    // });
+    console.log(content_html);
+    // const title = titleRef.current.value;
+    const body = JSON.stringify({
+      title: titleRef.current.value,
+      content: content_html,
+      created_at: new Date(),
+      user: {
+        id: 1,
+        name: "bibi",
+        login_id: "bibi6666667",
+      },
+      milestone_id: temporalState.milestones[0] ? temporalState.milestones[0].id.toString() : null,
+      label_id_list: temporalState.labels.map((e) => e.id),
+      assignee_list: temporalState.assignees.map((e) => ({ user_id: e.id })),
+    });
+    fetch(URL.endPoint("issue"), {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body,
+    });
   };
 
   return (
     <div>
-      <IssueEditorPresenter
-        {...{ handleSubmit, editorRef, titleRef, assigneesRef, labelsRef, milestoneRef }}
-      />
+      <IssueEditorPresenter {...{ handleSubmit, editorRef, titleRef }} />
     </div>
   );
 }
