@@ -11,11 +11,11 @@ import { URL } from "utils/urls";
 
 export default function EditorAccordion({ assigneesRef, milestoneRef, labelsRef }: EditorRefsType) {
   const [expanded, setExpanded] = useState<string | false>(false);
-  const [refsState, setRefState] = useState<TemporalRefStateType>({
-    assignees: [],
-    labels: [],
-    milestones: [],
-  });
+  // const [refsState, setRefState] = useState<TemporalRefStateType>({
+  //   assignees: [],
+  //   labels: [],
+  //   milestones: [],
+  // });
   const [temporalState, setTemporalState] = useRecoilState(temporalRefState);
 
   // useEffect(() => {
@@ -58,19 +58,19 @@ export default function EditorAccordion({ assigneesRef, milestoneRef, labelsRef 
       <AccordionPanel
         {...{ expanded, handleChange, handleDelete, handleClickToSelect }}
         keyName="assignees"
-        temporalArray={assiginees}
+        temporalArray={temporalState.assignees}
         expandedValue="panel1"
       />
       <AccordionPanel
         {...{ expanded, handleChange, handleDelete, handleClickToSelect }}
         keyName="milestones"
-        temporalArray={milestones.data}
+        temporalArray={temporalState.milestones}
         expandedValue="panel2"
       />
       <AccordionPanel
         {...{ expanded, handleChange, handleDelete, handleClickToSelect }}
         keyName="labels"
-        temporalArray={labels.data}
+        temporalArray={temporalState.labels}
         expandedValue="panel3"
       />
     </Grid>

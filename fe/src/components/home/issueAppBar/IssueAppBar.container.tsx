@@ -26,46 +26,45 @@ export default function IssueAppBarContainer() {
       const response = await fetch(URL.endPoint("user/assignee"));
       const json = await response.json();
       const data = json.data;
+      const value = [...data].map((e) => ({ id: e.login_id, title: e.name }));
       setIssueRefArray({
         ...issueRefArray,
-        assignee: [...data].map((e) => ({ id: e.login_id, title: e.name })),
+        assignee: value,
       });
+      sessionStorage.setItem("assigneeListItems", JSON.stringify(value));
     };
     const getAuthors = async () => {
       const response = await fetch(URL.endPoint("user/author"));
       const json = await response.json();
       const data = json.data;
+      const value = [...data].map((e) => ({ id: e.login_id, title: e.name }));
       setIssueRefArray({
         ...issueRefArray,
-        author: [...data].map((e) => ({ id: e.login_id, title: e.name })),
+        author: value,
       });
+      sessionStorage.setItem("authorListItems", JSON.stringify(value));
     };
     const getMilestones = async () => {
       const response = await fetch(URL.endPoint("milestone"));
       const json = await response.json();
       const data = json.data;
+      const value = [...data].map((e) => ({ id: e.id, title: e.title }));
       setIssueRefArray({
         ...issueRefArray,
-        milestone: [...data].map((e) => ({ id: e.id, title: e.title })),
+        milestone: value,
       });
+      sessionStorage.setItem("milestoneListItems", JSON.stringify(value));
     };
     const getLabels = async () => {
-      const sessionStorageLabels = sessionStorage.getItem("labels");
-      if (sessionStorageLabels) {
-        const data = JSON.parse(sessionStorageLabels);
-        setIssueRefArray({
-          ...issueRefArray,
-          label: [...data].map((e) => ({ id: e.id, title: e.title })),
-        });
-        return;
-      }
       const response = await fetch(URL.endPoint("label"));
       const json = await response.json();
       const data = json.data;
+      const value = [...data].map((e) => ({ id: e.id, title: e.title }));
       setIssueRefArray({
         ...issueRefArray,
-        label: [...data].map((e) => ({ id: e.id, title: e.title })),
+        label: value,
       });
+      sessionStorage.setItem("labelListItems", JSON.stringify(value));
     };
     getAssignees();
     getAuthors();
