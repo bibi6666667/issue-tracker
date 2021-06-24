@@ -10,11 +10,6 @@ function LabelPageContainer() {
   const [open, setOpenState] = useState(false);
 
   useEffect(() => {
-    const labels = sessionStorage.getItem("labels");
-    if (labels) {
-      setLabelState([...JSON.parse(labels)]);
-      return;
-    }
     const request = async () => {
       const response = await fetch(URL.endPoint("label"));
       const json = await response.json();

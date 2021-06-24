@@ -10,21 +10,10 @@ import { useEffect } from "react";
 import { URL } from "utils/urls";
 
 function IssueList() {
-  // TODO: fetch 요청으로 받고, 캐싱하기
-  // 캐싱 후에는 캐시한 곳에서 가져오기
-  // const setOpenIssues = useSetRecoilState(openedIssues);
-  // const setCloseIssues = useSetRecoilState(closedIssues);
   const [openIssues, setOpenIssues] = useRecoilState(openedIssues);
   const [closeIssues, setCloseIssues] = useRecoilState(closedIssues);
 
   useEffect(() => {
-    const openIssuesData = sessionStorage.getItem("openIssues");
-    if (openIssuesData) {
-      const newOpenIssues = JSON.parse(openIssuesData);
-      setOpenIssues([...newOpenIssues]);
-      return;
-    }
-    // if (!sessionStorage.getItem("openIssues")) {
     const request = async () => {
       const response = await fetch(URL.endPoint("issue/open"));
       const json = await response.json();
@@ -32,7 +21,6 @@ function IssueList() {
       sessionStorage.setItem("openIssues", JSON.stringify([...json.data]));
     };
     request();
-    // }
   }, []);
 
   useEffect(() => {

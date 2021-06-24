@@ -36,16 +36,19 @@ function IssueEditorContainer() {
     const body = JSON.stringify({
       title: titleRef.current.value,
       content: content_html,
-      created_at: new Date(),
+      created_at: "2021-06-24 16:04:00",
       user: {
         id: 1,
-        name: "bibi",
-        login_id: "bibi6666667",
+        name: "adela",
+        login_id: "adelakim5",
       },
       milestone_id: temporalState.milestones[0] ? temporalState.milestones[0].id.toString() : null,
       label_id_list: temporalState.labels.map((e) => e.id),
       assignee_list: temporalState.assignees.map((e) => ({ user_id: e.id })),
     });
+
+    console.log(body);
+
     fetch(URL.endPoint("issue"), {
       method: "post",
       headers: {

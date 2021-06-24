@@ -18,6 +18,32 @@ export interface MilestoneType extends ListItemsType {
   color: string;
 }
 
+export interface IssueDetailType {
+  id: number;
+  title: string;
+  content: string;
+  status: boolean;
+  created_at: string;
+  label_list: string[];
+  author: {
+    name: string;
+    user_id: string;
+  };
+  milestone: {
+    milestone_id: number;
+    title: string;
+  };
+  comment: {
+    id: number;
+    content: string;
+    created_at: string;
+    author: {
+      name: string;
+      user_id: string;
+    };
+  }[];
+}
+
 export interface IssueType {
   id: number;
   title: string;
