@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.codesquad'
@@ -13,13 +14,59 @@ repositories {
 }
 
 dependencies {
+
+    // spring boot basic
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // data source
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    // jjwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.8'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.8'
+
+    // jasypt
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.0'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    // validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // aws
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.12.1')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+
+    // querydsl
+    implementation 'com.querydsl:querydsl-jpa'
+    implementation 'com.querydsl:querydsl-apt'
+
+    // h2
+    runtimeOnly 'com.h2database:h2'
 }
 
 test {
     useJUnitPlatform()
+}
+
+// querydsl
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+sourceSets {
+    main.java.srcDir querydslDir
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
 }
